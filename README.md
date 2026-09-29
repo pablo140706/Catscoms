@@ -28,18 +28,18 @@ Registradas como issues, asignadas a su autor.
 
 | # | Autor | Propuesta | Issue |
 |---|---|---|---|
-| 1 | Estrada Sánchez Emiliano | *(pendiente)* | *(link)* |
-| 2 | Estrada Sánchez Emiliano | *(pendiente)* | *(link)* |
-| 3 | Estrada Sánchez Emiliano | *(pendiente)* | *(link)* |
-| 4 | Mora Acosta Pablo | *(pendiente)* | *(link)* |
-| 5 | Mora Acosta Pablo | *(pendiente)* | *(link)* |
-| 6 | Mora Acosta Pablo | *(pendiente)* | *(link)* |
-| 7 | Espinosa Gómez David Enrique | *(pendiente)* | *(link)* |
-| 8 | Espinosa Gómez David Enrique | *(pendiente)* | *(link)* |
-| 9 | Espinosa Gómez David Enrique | *(pendiente)* | *(link)* |
+| 2 | Estrada Sánchez Emiliano | Despliegue reproducible del entorno que funcione con un solo comando | [#1](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/1) |
+| 3 | Estrada Sánchez Emiliano | Normalizar la tabla de hechos y sus dimensiones | [#5](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/5) |
+| 6 | Estrada Sánchez Emiliano | Guardar y compartir reportes analíticos personalizados | [#6](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/6) |
+| 1 | Mora Acosta Pablo | Bitácora de carga y auditoría de registros descartados | [#2](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/2) |
+| 4 | Mora Acosta Pablo | Selección dinámica de cortes censales para el impacto | [#3](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/3) |
+| 8 | Mora Acosta Pablo | Cálculo del impacto territorial por municipio | [#4](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/4) |
+| 5 | Espinosa Gómez David Enrique | Documentación y versionado del cálculo de riesgo | [#7](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/7) |
+| 7 | Espinosa Gómez David Enrique | Detección de réplicas y secuencias sísmicas | [#8](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/8) |
+| 9 | Espinosa Gómez David Enrique | Clasificación por placa tectónica o zona sismogénica | [#9](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/9) |
 
 PDF con el detalle de las 9 propuestas: [`propuestas/propuestas-de-mejora.pdf`](propuestas/propuestas-de-mejora.pdf)
 
 ## Declaración sobre el uso de inteligencia artificial generativa
 
-Se usó Claude (Anthropic) como asistente para localizar y leer los artículos del Ejercicio 3, redactar los borradores de los
+Se usó Claude (Anthropic) como asistente para localizar y leer los artículos del Ejercicio 3, redactar los borradores de los documentos.
