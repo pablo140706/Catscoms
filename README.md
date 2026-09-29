@@ -42,4 +42,4 @@ PDF con el detalle de las 9 propuestas: [`propuestas/propuestas-de-mejora.pdf`](
 
 ## Declaración sobre el uso de inteligencia artificial generativa
 
-Se usó Claude (Anthropic) como asistente para localizar y leer los artículos del Ejercicio 3, redactar los borradores de los documentos.
+Se usó Claude (Anthropic) como asistente para localizar y leer los artículos del Ejercicio 3, redactar los borradores de los resúmenes y apoyar la elaboración del modelo EER y del documento del proyecto asignado. El contenido fue revisado, corregido y aprobado por el equipo, y cada integrante es responsable de sus propuestas de mejora.
