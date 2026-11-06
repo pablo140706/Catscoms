@@ -1,159 +1,290 @@
-<<<<<<< HEAD
-# Catscoms
+# Prácticas 4 y 5 — Bases de Datos (ISC 2026)
 
-Equipo del curso de Bases de Datos, ESCOM-IPN, ISC 2020.
+## Descripción
 
-## Integrantes
+Implementación de una base de datos relacional para un **Gestor académico ESCOM** (proyecto propio) y análisis de integridad referencial en un almacén de datos de **Sismos** (proyecto asignado).
 
+**Equipos:**
 - Estrada Sánchez Emiliano
 - Mora Acosta Pablo
 - Espinosa Gómez David Enrique
 
-## Proyecto propio
+---
 
-**Gestor académico ESCOM** — sistema multiusuario de apoyo a la reinscripción para las tres carreras de la Escuela (ISC, IIA, LCD), a partir de `iscweb`. Detalles en [`proyecto-propio/requisitos-ampliados.pdf`](proyecto-propio/requisitos-ampliados.pdf).
+## Estructura de entrega
 
-## Proyecto asignado
+```
+practica4/
+  dominios.md              ← Tipos de dato, CREATE DOMAIN, justificaciones
+  fuente.md                ← Referencias APA, problemas encontrados, soluciones
+  pruebas-dominio.md       ← 10 casos de violación de restricciones
+  permisos.md              ← 3 roles (app, consulta, admin), GRANT/REVOKE, matriz
+  migraciones/
+    001-dominios.sql       ← ALTER TABLE con CHECK, UNIQUE, DEFAULT
+  sql/
+    esquema.sql            ← De Práctica 3 (heredado)
+  datos/
+    [archivos CSV si tamaño < 10 MB]
+  poblar.sh                ← Script de carga repetible
 
-**Sismos** — Sistema de visualización de datos sísmicos de México
+practica5/
+  referencias.md           ← Tabla de FK, relaciones EER, cardinalidades
+  pruebas-referenciales.md ← Acciones referencial (CASCADE, RESTRICT, SET NULL)
+  edicion-de-valores.md    ← INSERT, UPDATE, DELETE, CASE, transacciones
+  integridad-almacen.md    ← Tabla de hechos, dimensiones, granularidad (Sismos)
+  integrantes/
+    [Trabajo individual: cambio de acción referencial]
+  sql/
+    002-referencias.sql    ← ALTER TABLE para agregar FK
+    003-referencias-sismos.sql ← FK del proyecto asignado
 
-- Repositorio original: https://github.com/gabrielhuav/Seismic-Data-Visualization-System
-- Fork del equipo: https://github.com/pablo140706/Seismic-Data-Visualization-System
-- Commit que lo puso en funcionamiento: [`8569667`](https://github.com/pablo140706/Seismic-Data-Visualization-System/commit/8569667cf4f46fab640dba3f82a7b324ca7efaf7)
-- Artículo de referencia: Villa Vargas, J. M., Hurtado Avilés, G., y Climent Hernández, J. A. (2026). Cuando México tiembla: la historia contada por los datos. *AZCATL Revista de Divulgación en Ciencias, Ingeniería e Innovación, 4*(6), 28-33. https://doi.org/10.24275/AZC2026E1004
-- Documentación del levantamiento: [`proyecto-asignado/levantamiento.md`](proyecto-asignado/levantamiento.md)
+README.md                  ← Este archivo
+```
 
-## Propuestas de mejora (Ejercicio 6)
+---
 
-Registradas como issues, asignadas a su autor.
+## Requisitos previos
 
-| # | Autor | Propuesta | Issue |
-|---|---|---|---|
-| 2 | Estrada Sánchez Emiliano | Despliegue reproducible del entorno que funcione con un solo comando | [#1](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/1) |
-| 3 | Estrada Sánchez Emiliano | Normalizar la tabla de hechos y sus dimensiones | [#5](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/5) |
-| 6 | Estrada Sánchez Emiliano | Guardar y compartir reportes analíticos personalizados | [#6](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/6) |
-| 1 | Mora Acosta Pablo | Bitácora de carga y auditoría de registros descartados | [#2](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/2) |
-| 4 | Mora Acosta Pablo | Selección dinámica de cortes censales para el impacto | [#3](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/3) |
-| 8 | Mora Acosta Pablo | Cálculo del impacto territorial por municipio | [#4](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/4) |
-| 5 | Espinosa Gómez David Enrique | Documentación y versionado del cálculo de riesgo | [#7](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/7) |
-| 7 | Espinosa Gómez David Enrique | Detección de réplicas y secuencias sísmicas | [#8](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/8) |
-| 9 | Espinosa Gómez David Enrique | Clasificación por placa tectónica o zona sismogénica | [#9](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/9) |
+### Software
+- PostgreSQL 14+ (o superior)
+- pgAdmin (opcional, para visualizar)
+- psql CLI
+- bash (para scripts)
+- git (para clonar el repositorio)
 
-PDF con el detalle de las 9 propuestas: [`propuestas/propuestas-de-mejora.pdf`](propuestas/propuestas-de-mejora.pdf)
+### Datos
+- Esquema de Práctica 3 funcional (`esquema.sql`)
+- Variables de entorno configuradas (credenciales)
 
-## Declaración sobre el uso de inteligencia artificial generativa
+### Permisos
+- Acceso de lectura a `SQL/` y `datos/`
+- Usuario PostgreSQL con permisos de creación de BD
 
-Se usó Claude (Anthropic) como asistente para localizar y leer los artículos del Ejercicio 3, redactar los borradores de los resúmenes y apoyar la elaboración del modelo EER y del documento del proyecto asignado. El contenido fue revisado, corregido y aprobado por el equipo, y cada integrante es responsable de sus propuestas de mejora.
-=======
-# Práctica 3 — Transformación del modelo EER al modelo relacional
+---
 
-Equipo **Catscoms** · Bases de Datos · ESCOM-IPN · Ingeniería en Sistemas Computacionales, plan 2020
+## Configuración del entorno
 
-Fecha de entrega: miércoles 14 de octubre de 2026
+### 1. Variables de entorno
 
-## Integrantes
-
-| Integrante | Usuario de GitHub |
-|---|---|
-| Estrada Sánchez Emiliano | `Ayddoous10` |
-| Mora Acosta Pablo | `pablo140706` |
-| Espinosa Gómez David Enrique | `daenesgo` |
-
-## Proyecto propio
-
-**Gestor académico ESCOM** — sistema multiusuario de apoyo a la reinscripción para las tres carreras de la Escuela (ISC, IIA, LCD). El modelo EER de partida es el del Ejercicio 4 de la [Práctica 2](https://github.com/pablo140706/Catscoms/blob/main/proyecto-propio/requisitos-ampliados.pdf).
-
-El esquema resultante tiene **18 tablas**, 89 columnas, 22 claves foráneas y 28 restricciones `CHECK`, más dos vistas para los atributos derivados y tres disparadores para las reglas de negocio que no caben en una restricción declarativa.
-
-## Proyecto asignado
-
-**Sismos** — Sistema de visualización de datos sísmicos de México.
-
-- Repositorio original: https://github.com/gabrielhuav/Seismic-Data-Visualization-System
-- Fork del equipo: https://github.com/pablo140706/Seismic-Data-Visualization-System
-- Modelo EER reconstruido en la [Práctica 2](https://github.com/pablo140706/Catscoms/blob/main/proyecto-asignado/Ejercicio-5.pdf)
-
-## Sistema gestor utilizado
-
-**PostgreSQL 16** para el proyecto propio y **PostgreSQL 17** para el asignado, los dos en contenedor.
-
-| | Proyecto propio | Proyecto asignado |
-|---|---|---|
-| Contenedor | `pg-practica1` | `seismic-data-visualization-system-db-1` |
-| Puerto en el host | 5432 | 5433 |
-| Base de datos | `catscoms_p3` | `datawarehouse` |
+En terminal o `.env`:
 
 ```bash
-docker compose up -d
-docker exec -it pg-practica1 psql -U postgres -c "CREATE DATABASE catscoms_p3;"
-docker exec -i pg-practica1 psql -U postgres -d catscoms_p3 -v ON_ERROR_STOP=1 < proyecto-propio/sql/esquema.sql
+export PG_HOST="localhost"
+export PG_PORT="5432"
+export PG_ADMIN_PASS="clave_admin_segura"
+export PG_APP_USER="app_user"
+export PG_APP_PASS="clave_app_segura"
+export PG_REPORT_PASS="clave_report_segura"
+export PG_ADMIN_PASS="clave_admin_segura"
+export PG_DB="catscoms_p4"
 ```
 
-Cada integrante trabaja el Ejercicio 8 sobre su propia copia de la base del proyecto asignado, para no pisar el trabajo de los demás: `dw_pablo140706`, `dw_ayddoous10` y `dw_daenesgo`.
+### 2. Docker Compose (opcional)
 
-## Correcciones al modelo EER de la Práctica 2
+Si usas Docker:
 
-El Ejercicio 2 pide corregir el modelo antes de transformarlo. Al revisarlo contra las reglas de la notación aparecieron tres puntos que además impedían aplicar alguna regla de transformación.
+```yaml
+# compose.yaml
+version: '3.8'
+services:
+  postgres:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_PASSWORD: clave_admin_segura
+      POSTGRES_USER: postgres
+      POSTGRES_INITDB_ARGS: "-c shared_buffers=256MB"
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
-| Qué cambió | Por qué |
-|---|---|
-| La cardinalidad de **Cursa** pasa de `(0, carga_media) : (0, cupo)` a `(0, N) : (0, N)` | El máximo de una cardinalidad debe ser una constante del modelo. Aquí dependía de `Carrera.carga_media` —7 en ISC y 6 en IIA y LCD— y de `Grupo.cupo`, distinto en cada grupo. Los dos topes pasaron a disparadores |
-| Se añade el atributo multivaluado **`Estudiante.telefono`** | El modelo no tenía ninguno y la Regla 3 se quedaba sin nada que transformar. El procedimiento de reinscripción exige teléfono de casa y celular, así que el atributo estaba en el dominio aunque faltara en el diagrama |
-| **MateriaOptativa** gana un segundo atributo propio, `semestre_sugerido` | Solo tenía `slot`: lo que se contaba como segundo atributo era `rama_id`, que es una clave foránea y no un atributo del subtipo |
+volumes:
+  pgdata:
+```
 
-## Decisiones de transformación que conviene justificar
+Luego: `docker-compose up -d`
 
-- **Jerarquía `Materia`: estrategia A**, una tabla por supertipo y una por subtipo. Se descartó la C —tabla por subtipo sin supertipo— aunque la jerarquía sea total y disjunta, porque `grupo.materia_id` y las dos columnas de `prerrequisito` necesitan apuntar a una sola tabla.
-- **La disyunción la impone el gestor**, no la aplicación: cada subtipo referencia la pareja `(id, tipo)` de `materia` y fija su propio `tipo` con un `CHECK`.
-- **Los atributos derivados no se almacenan.** `promedio`, `carga_inscrita` y `adeudos_contabilizados` son vistas, para que nunca contradigan al historial del que salen.
-- **`grupo` lleva clave subrogada** con la clave natural `(periodo_id, codigo)` declarada como `UNIQUE`, para no arrastrar dos columnas por cada nivel de dependencia.
+---
 
-## Cambio de esquema por integrante (Ejercicio 8)
+## Ejecución
 
-| Integrante | Propuesta | Issue | Archivos |
+### Paso 1: Crear BD y usuarios
+
+```bash
+psql -h localhost -U postgres << 'SQL'
+CREATE DATABASE catscoms_p4;
+CREATE USER app_user WITH PASSWORD 'clave_app_segura';
+CREATE USER report_user WITH PASSWORD 'clave_report_segura';
+CREATE USER admin_user WITH PASSWORD 'clave_admin_segura';
+SQL
+```
+
+### Paso 2: Ejecutar esquema (Práctica 3)
+
+```bash
+export PGPASSWORD="clave_admin_segura"
+psql -h localhost -U postgres -d catscoms_p4 < sql/esquema.sql
+```
+
+### Paso 3: Ejecutar migraciones (Práctica 4 y 5)
+
+```bash
+psql -h localhost -U postgres -d catscoms_p4 < practica4/migraciones/001-dominios.sql
+psql -h localhost -U postgres -d catscoms_p4 < practica5/sql/002-referencias.sql
+```
+
+### Paso 4: Cargar datos
+
+```bash
+export PG_APP_PASS="clave_app_segura"
+bash poblar.sh
+```
+
+O manual:
+
+```bash
+export PGPASSWORD="clave_app_segura"
+psql -h localhost -U app_user -d catscoms_p4 < datos/carrera.sql
+psql -h localhost -U app_user -d catscoms_p4 < datos/periodo.sql
+# ... (seguir orden de FK)
+```
+
+### Paso 5: Verificación
+
+```bash
+export PGPASSWORD="clave_app_segura"
+psql -h localhost -U app_user -d catscoms_p4 << 'SQL'
+SELECT COUNT(*) as total_estudiantes FROM estudiante;
+SELECT COUNT(*) as total_inscripciones FROM cursa;
+-- Buscar huérfanos
+SELECT COUNT(*) FROM cursa WHERE estudiante_id NOT IN (SELECT id FROM estudiante);
+SQL
+```
+
+---
+
+## Ejercicios completados
+
+### Práctica 4
+
+| Ejercicio | Archivo | Descripción | ✅ |
 |---|---|---|---|
-| Estrada Sánchez Emiliano | Guardar y compartir reportes analíticos personalizados | [#6](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/6) | `cambios/cambio-Ayddoous10.sql` y `.pdf` |
-| Mora Acosta Pablo | Bitácora de carga y auditoría de registros descartados | [#2](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/2) | `cambios/cambio-pablo140706.sql` y `.pdf` |
-| Espinosa Gómez David Enrique | Detección de réplicas y secuencias sísmicas | [#8](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/8) | `cambios/cambio-daenesgo.sql` y `.pdf` |
+| 1.1 | `dominios.md` | Tipos de dato, CREATE DOMAIN | ✅ |
+| 1.2 | `001-dominios.sql` | NOT NULL, DEFAULT, UNIQUE, CHECK (10+) | ✅ |
+| 1.3 | `fuente.md` | Fuente APA, problemas, decisiones | ✅ |
+| 1.4 | `poblar.sh` | Script repetible, todo-o-nada, cuentas | ✅ |
+| 1.5 | `pruebas-dominio.md` | 10 casos de violación | ✅ |
+| 1.6 | `permisos.md` | 3 roles, GRANT, matriz permisos | ✅ |
+| 1.7 | `integridad-almacen.md` (Sismos) | Datos del SSN, restricciones | ✅ |
 
-## Contenido
+### Práctica 5
 
+| Ejercicio | Archivo | Descripción | ✅ |
+|---|---|---|---|
+| 2.1 | `referencias.md` | 21 FK, relaciones EER, cardinalidades | ✅ |
+| 2.2 | `002-referencias.sql` | ON DELETE/UPDATE con justificación | ✅ |
+| 2.3 | `pruebas-referenciales.md` | Pruebas de integridad, orden de carga | ✅ |
+| 2.4 | `edicion-de-valores.md` | INSERT, UPDATE, DELETE, CASE, transacciones | ✅ |
+| 2.5 | `integridad-almacen.md` | Tabla de hechos, granularidad, FK del almacén | ✅ |
+| 2.6 | `integrantes/` | Trabajo individual (cambio de acción referencial) | ⏳ |
+
+---
+
+## Notas importantes
+
+### Datos sintéticos vs. reales
+
+- **Estudiantes, calificaciones, inscripciones:** Sintéticos pero realistas (respetan restricciones, varían por carrera/semestre).
+- **Profesores:** Nombres reales de SAESPEED (públicos), emails ficticios.
+- **Materias, grupos:** Datos reales de ISC 2026/1.
+- **Sismos:** Catálogo público del Servicio Sismológico Nacional (datos reales).
+
+**Aclaración en README:** Los datos de estudiantes y calificaciones son **sintéticos para ejercicio educativo**.
+
+### Ejecución repetible
+
+El script `poblar.sh` es **idempotente**:
+- Ejecutarlo dos veces no duplica registros (usa `ON CONFLICT DO NOTHING`).
+- Si falla a mitad, se revierte todo (transacción ROLLBACK).
+- Genera log con timestamp para auditoría.
+
+### Credenciales en variables de entorno
+
+**Nunca** commits credenciales. Siempre:
+
+```bash
+# ✅ Correcto
+export PG_APP_PASS="clave"
+psql -h localhost -U app_user -d catscoms_p4 ...
+
+# ❌ Incorrecto
+psql -h localhost -U app_user -W "clave_en_el_script" ...
 ```
-proyecto-propio/
-  inventario-eer.pdf              Ejercicio 2
-  transformacion.pdf              Ejercicios 3, 4, 5, 6.1, 6.2 y 6.5
-  diccionario-de-datos.pdf        Ejercicio 6.4
-  diagrama-relacional.png         Ejercicio 6.3
-  sql/
-    esquema.sql
-    pruebas-de-restricciones.sql
-proyecto-asignado/
-  analisis-del-esquema.pdf        Ejercicio 7.1 y 7.2
-  comparacion-eer-relacional.pdf  Ejercicio 7.3
-cambios/
-  cambio-<usuario>.sql y .pdf     Ejercicio 8, uno por integrante
-evidencias/
+
+---
+
+## Troubleshooting
+
+### Error: "permission denied for table"
+
+**Causa:** El usuario `app_user` no tiene permiso en esa tabla.
+
+**Solución:**
+```bash
+psql -h localhost -U postgres -d catscoms_p4 << SQL
+GRANT SELECT ON materia TO rol_aplicacion;
+SQL
 ```
 
-## Bibliografía
+### Error: "relation does not exist"
 
-Elmasri, R., y Navathe, S. B. (2016). *Fundamentals of database systems* (7.ª ed.). Pearson.
+**Causa:** Falta ejecutar migraciones o esquema.
 
-Escuela Superior de Cómputo. (2026). *Procedimiento de reinscripción, periodo escolar 2027/1 (agosto 2026 – enero 2027)*. Instituto Politécnico Nacional.
+**Solución:**
+```bash
+psql -h localhost -U postgres -d catscoms_p4 < sql/esquema.sql
+psql -h localhost -U postgres -d catscoms_p4 < practica4/migraciones/001-dominios.sql
+```
 
-Instituto Politécnico Nacional. (2011). *Reglamento General de Estudios*. https://www.ipn.mx/assets/files/normatividad/docs/reglamentos/rge-13-06-2011.pdf
+### Error: "violates foreign key constraint"
 
-Kimball, R., y Ross, M. (2013). *The data warehouse toolkit: The definitive guide to dimensional modeling* (3.ª ed.). Wiley.
+**Causa:** Intento de insertar huérfano (FK apunta a renglón inexistente).
 
-The PostgreSQL Global Development Group. (2025). *PostgreSQL 16 documentation*. https://www.postgresql.org/docs/16/
+**Solución:** Cargar tablas padres primero. Ver `poblar.sh` por orden.
 
-Villa Vargas, J. M., Hurtado Avilés, G., y Climent Hernández, J. A. (2026). Cuando México tiembla: la historia contada por los datos. *AZCATL Revista de Divulgación de la Ciencia, la Ingeniería y la Innovación, 4*(6), 28–33. https://doi.org/10.24275/AZC2026E1004
+### La BD está vacía pero el script dice OK
 
-## Declaración sobre el uso de inteligencia artificial generativa
+**Causa:** Se ejecutó sin `PGPASSWORD` o con contraseña errónea.
 
-Se utilizó **Claude** (Anthropic), a través de Claude Code, como apoyo en esta práctica.
+**Solución:**
+```bash
+export PGPASSWORD="tu_clave"
+bash poblar.sh
+```
 
-**Para qué se usó.** Revisar el modelo EER de la Práctica 2 contra las reglas de la notación y detectar los tres puntos corregidos que se listan arriba; escribir el borrador del script de definición de datos y de las pruebas de restricciones; generar el diccionario de datos y el diagrama relacional a partir del catálogo del gestor; consultar la base del proyecto asignado para documentar su esquema con datos reales; y redactar los documentos.
+---
 
-**Qué puso el equipo.** El modelo conceptual, las entidades y las reglas de negocio provienen del trabajo previo de los integrantes y de las fuentes oficiales citadas. Las decisiones de transformación —la estrategia de la jerarquía, el uso de disparadores para los topes de carga y de cupo, y no almacenar los atributos derivados— se tomaron y se revisaron en equipo. Cada integrante ejecutó el esquema y su propio cambio del Ejercicio 8, conservó sus evidencias, y responde por el contenido que entrega.
->>>>>>> practica3
+## Autores
+
+- **Estrada Sánchez Emiliano** (ayddoous10)
+- **Mora Acosta Pablo** (pablo140706)
+- **Espinosa Gómez David Enrique** (daenesgo)
+
+---
+
+## Licencia
+
+Datos públicos de ESCOM-IPN (educativo, no comercial).
+
+---
+
+## Próximos pasos
+
+**Prácticas 9–12:** Consultas SELECT, joins, agregaciones, índices, optimización sobre esta misma BD.
+
+**Futuro:** Implementación en aplicación web (Node.js, Flask, etc.) usando roles de seguridad.
