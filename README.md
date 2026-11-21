@@ -1,19 +1,75 @@
-<<<<<<< HEAD
 # Catscoms
 
-Equipo del curso de Bases de Datos, ESCOM-IPN, ISC 2020.
+Equipo del curso de Bases de Datos · ESCOM-IPN · Ingeniería en Sistemas Computacionales, plan 2020
 
-## Integrantes
+| Integrante | Usuario de GitHub |
+|---|---|
+| Estrada Sánchez Emiliano | `Ayddoous10` |
+| Mora Acosta Pablo | `pablo140706` |
+| Espinosa Gómez David Enrique | `daenesgo` |
 
-- Estrada Sánchez Emiliano
-- Mora Acosta Pablo
-- Espinosa Gómez David Enrique
+## Segundo parcial: enlaces y archivos
 
-## Proyecto propio
+Lo que pide el *Proyecto del segundo parcial de Bases de Datos*, en el orden de la exposición.
+
+### 1. Proyecto propio: Gestorix
+
+El *Gestor académico ESCOM* de las prácticas anteriores ahora se llama **Gestorix** y vive en su propio repositorio.
+
+| Entregable | Dónde |
+|---|---|
+| Aplicación web | **<https://thwarting-earthling-evasive.ngrok-free.dev>**. La PC del autor es el servidor: la base vive en su Docker y ngrok la saca a internet. Funciona mientras esa PC esté prendida |
+| Repositorio e instrucciones para ejecutarla | [`pablo140706/Gestorix`](https://github.com/pablo140706/Gestorix) (sección *Cómo levantarlo*) |
+| Esquema (creación) | [`sql/00-tablas.sql`](https://github.com/pablo140706/Gestorix/blob/main/sql/00-tablas.sql) |
+| Modelo relacional, claves, restricciones y acciones referenciales | [`proyecto-propio/practica-integrada/diagrama-er.md`](proyecto-propio/practica-integrada/diagrama-er.md) |
+| Scripts de carga y migración | [`sql/`](https://github.com/pablo140706/Gestorix/tree/main/sql), [`importador/`](https://github.com/pablo140706/Gestorix/tree/main/importador) y [`migraciones/`](https://github.com/pablo140706/Gestorix/tree/main/migraciones) |
+| Evidencia del registro | [`docs/evidencia-registro.md`](https://github.com/pablo140706/Gestorix/blob/main/docs/evidencia-registro.md): formulario → `SELECT` en pgAdmin, y cómo viajan los datos a la base |
+| Seguridad del registro | Tabla en el [README de Gestorix](https://github.com/pablo140706/Gestorix#publicación-la-pc-como-servidor) |
+| Práctica integrada 6–8: normalización | [`proyecto-propio/practica-integrada/normalizacion.md`](proyecto-propio/practica-integrada/normalizacion.md) |
+| Práctica integrada 6–8: álgebra relacional y SQL | [`proyecto-propio/practica-integrada/algebra.md`](proyecto-propio/practica-integrada/algebra.md): 13 ejercicios (selección, proyección, conjuntos, producto, reuniones, agrupación y división) comparados en RelaX |
+| Grupo de RelaX | [`proyecto-propio/practica-integrada/relax/gestorix.txt`](proyecto-propio/practica-integrada/relax/gestorix.txt) (se pega en el *Editor de Grupo* de [RelaX](https://dbis-uibk.github.io/relax/calc/local/uibk/local/0)) y los scripts que lo generan |
+
+### 2. Proyecto asignado: Sismos
+
+| Entregable | Dónde |
+|---|---|
+| Repositorio de la versión actual del artículo | [`gabrielhuav/Seismic_Data_Geosciences`](https://github.com/gabrielhuav/Seismic_Data_Geosciences) |
+| Fork del equipo y su versión publicada | *Pendiente* |
+| Instrucciones de montaje | *Pendiente* |
+| Tres consultas: álgebra, árbol, SQL y resultados | *Pendiente* |
+
+### 3. Artículo y exposición
+
+| Entregable | Dónde |
+|---|---|
+| Manuscrito R3 | [Word](https://github.com/gabrielhuav/Seismic_Data_Geosciences/blob/main/paper/manuscript/out/Seismic_CG_manuscript_R3.docx) · [PDF](https://github.com/gabrielhuav/Seismic_Data_Geosciences/blob/main/paper/manuscript/out/Seismic_CG_manuscript_R3.pdf) |
+| Referencia en APA 7 | *Pendiente* |
+| Dos propuestas de mejora | *Pendiente* |
+| Presentación | *Pendiente* |
+
+### Aportaciones de cada integrante
+
+| Integrante | Aportación |
+|---|---|
+| Mora Acosta Pablo | Proyecto propio (Gestorix: base, API, front, publicación y práctica integrada) y parte técnica del proyecto asignado |
+| Estrada Sánchez Emiliano | *Pendiente* |
+| Espinosa Gómez David Enrique | *Pendiente* |
+
+### Uso de inteligencia artificial generativa en el segundo parcial
+
+Se usó Claude (Anthropic), a través de Claude Code, para escribir y revisar código, consultas y documentos de Gestorix y de la práctica integrada. El equipo decidió el alcance y las reglas, revisó y probó todo, y responde por lo que entrega.
+
+---
+
+# Primer parcial y prácticas anteriores
+
+## Práctica 2 — Modelo EER y propuestas de mejora
+
+### Proyecto propio
 
 **Gestor académico ESCOM** — sistema multiusuario de apoyo a la reinscripción para las tres carreras de la Escuela (ISC, IIA, LCD), a partir de `iscweb`. Detalles en [`proyecto-propio/requisitos-ampliados.pdf`](proyecto-propio/requisitos-ampliados.pdf).
 
-## Proyecto asignado
+### Proyecto asignado
 
 **Sismos** — Sistema de visualización de datos sísmicos de México
 
@@ -23,7 +79,7 @@ Equipo del curso de Bases de Datos, ESCOM-IPN, ISC 2020.
 - Artículo de referencia: Villa Vargas, J. M., Hurtado Avilés, G., y Climent Hernández, J. A. (2026). Cuando México tiembla: la historia contada por los datos. *AZCATL Revista de Divulgación en Ciencias, Ingeniería e Innovación, 4*(6), 28-33. https://doi.org/10.24275/AZC2026E1004
 - Documentación del levantamiento: [`proyecto-asignado/levantamiento.md`](proyecto-asignado/levantamiento.md)
 
-## Propuestas de mejora (Ejercicio 6)
+### Propuestas de mejora (Ejercicio 6)
 
 Registradas como issues, asignadas a su autor.
 
@@ -41,31 +97,21 @@ Registradas como issues, asignadas a su autor.
 
 PDF con el detalle de las 9 propuestas: [`propuestas/propuestas-de-mejora.pdf`](propuestas/propuestas-de-mejora.pdf)
 
-## Declaración sobre el uso de inteligencia artificial generativa
 
-Se usó Claude (Anthropic) como asistente para localizar y leer los artículos del Ejercicio 3, redactar los borradores de los resúmenes y apoyar la elaboración del modelo EER y del documento del proyecto asignado. El contenido fue revisado, corregido y aprobado por el equipo, y cada integrante es responsable de sus propuestas de mejora.
-=======
-# Práctica 3 — Transformación del modelo EER al modelo relacional
+## Práctica 3 — Transformación del modelo EER al modelo relacional
+
 
 Equipo **Catscoms** · Bases de Datos · ESCOM-IPN · Ingeniería en Sistemas Computacionales, plan 2020
 
 Fecha de entrega: miércoles 14 de octubre de 2026
 
-## Integrantes
-
-| Integrante | Usuario de GitHub |
-|---|---|
-| Estrada Sánchez Emiliano | `Ayddoous10` |
-| Mora Acosta Pablo | `pablo140706` |
-| Espinosa Gómez David Enrique | `daenesgo` |
-
-## Proyecto propio
+### Proyecto propio
 
 **Gestor académico ESCOM** — sistema multiusuario de apoyo a la reinscripción para las tres carreras de la Escuela (ISC, IIA, LCD). El modelo EER de partida es el del Ejercicio 4 de la [Práctica 2](https://github.com/pablo140706/Catscoms/blob/main/proyecto-propio/requisitos-ampliados.pdf).
 
 El esquema resultante tiene **18 tablas**, 89 columnas, 22 claves foráneas y 28 restricciones `CHECK`, más dos vistas para los atributos derivados y tres disparadores para las reglas de negocio que no caben en una restricción declarativa.
 
-## Proyecto asignado
+### Proyecto asignado
 
 **Sismos** — Sistema de visualización de datos sísmicos de México.
 
@@ -73,7 +119,7 @@ El esquema resultante tiene **18 tablas**, 89 columnas, 22 claves foráneas y 28
 - Fork del equipo: https://github.com/pablo140706/Seismic-Data-Visualization-System
 - Modelo EER reconstruido en la [Práctica 2](https://github.com/pablo140706/Catscoms/blob/main/proyecto-asignado/Ejercicio-5.pdf)
 
-## Sistema gestor utilizado
+### Sistema gestor utilizado
 
 **PostgreSQL 16** para el proyecto propio y **PostgreSQL 17** para el asignado, los dos en contenedor.
 
@@ -91,7 +137,7 @@ docker exec -i pg-practica1 psql -U postgres -d catscoms_p3 -v ON_ERROR_STOP=1 <
 
 Cada integrante trabaja el Ejercicio 8 sobre su propia copia de la base del proyecto asignado, para no pisar el trabajo de los demás: `dw_pablo140706`, `dw_ayddoous10` y `dw_daenesgo`.
 
-## Correcciones al modelo EER de la Práctica 2
+### Correcciones al modelo EER de la Práctica 2
 
 El Ejercicio 2 pide corregir el modelo antes de transformarlo. Al revisarlo contra las reglas de la notación aparecieron tres puntos que además impedían aplicar alguna regla de transformación.
 
@@ -101,14 +147,14 @@ El Ejercicio 2 pide corregir el modelo antes de transformarlo. Al revisarlo cont
 | Se añade el atributo multivaluado **`Estudiante.telefono`** | El modelo no tenía ninguno y la Regla 3 se quedaba sin nada que transformar. El procedimiento de reinscripción exige teléfono de casa y celular, así que el atributo estaba en el dominio aunque faltara en el diagrama |
 | **MateriaOptativa** gana un segundo atributo propio, `semestre_sugerido` | Solo tenía `slot`: lo que se contaba como segundo atributo era `rama_id`, que es una clave foránea y no un atributo del subtipo |
 
-## Decisiones de transformación que conviene justificar
+### Decisiones de transformación que conviene justificar
 
 - **Jerarquía `Materia`: estrategia A**, una tabla por supertipo y una por subtipo. Se descartó la C —tabla por subtipo sin supertipo— aunque la jerarquía sea total y disjunta, porque `grupo.materia_id` y las dos columnas de `prerrequisito` necesitan apuntar a una sola tabla.
 - **La disyunción la impone el gestor**, no la aplicación: cada subtipo referencia la pareja `(id, tipo)` de `materia` y fija su propio `tipo` con un `CHECK`.
 - **Los atributos derivados no se almacenan.** `promedio`, `carga_inscrita` y `adeudos_contabilizados` son vistas, para que nunca contradigan al historial del que salen.
 - **`grupo` lleva clave subrogada** con la clave natural `(periodo_id, codigo)` declarada como `UNIQUE`, para no arrastrar dos columnas por cada nivel de dependencia.
 
-## Cambio de esquema por integrante (Ejercicio 8)
+### Cambio de esquema por integrante (Ejercicio 8)
 
 | Integrante | Propuesta | Issue | Archivos |
 |---|---|---|---|
@@ -116,7 +162,7 @@ El Ejercicio 2 pide corregir el modelo antes de transformarlo. Al revisarlo cont
 | Mora Acosta Pablo | Bitácora de carga y auditoría de registros descartados | [#2](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/2) | `cambios/cambio-pablo140706.sql` y `.pdf` |
 | Espinosa Gómez David Enrique | Detección de réplicas y secuencias sísmicas | [#8](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/8) | `cambios/cambio-daenesgo.sql` y `.pdf` |
 
-## Contenido
+### Contenido
 
 ```
 proyecto-propio/
@@ -135,7 +181,7 @@ cambios/
 evidencias/
 ```
 
-## Bibliografía
+### Bibliografía
 
 Elmasri, R., y Navathe, S. B. (2016). *Fundamentals of database systems* (7.ª ed.). Pearson.
 
@@ -149,11 +195,10 @@ The PostgreSQL Global Development Group. (2025). *PostgreSQL 16 documentation*. 
 
 Villa Vargas, J. M., Hurtado Avilés, G., y Climent Hernández, J. A. (2026). Cuando México tiembla: la historia contada por los datos. *AZCATL Revista de Divulgación de la Ciencia, la Ingeniería y la Innovación, 4*(6), 28–33. https://doi.org/10.24275/AZC2026E1004
 
-## Declaración sobre el uso de inteligencia artificial generativa
+### Declaración sobre el uso de inteligencia artificial generativa
 
 Se utilizó **Claude** (Anthropic), a través de Claude Code, como apoyo en esta práctica.
 
 **Para qué se usó.** Revisar el modelo EER de la Práctica 2 contra las reglas de la notación y detectar los tres puntos corregidos que se listan arriba; escribir el borrador del script de definición de datos y de las pruebas de restricciones; generar el diccionario de datos y el diagrama relacional a partir del catálogo del gestor; consultar la base del proyecto asignado para documentar su esquema con datos reales; y redactar los documentos.
 
 **Qué puso el equipo.** El modelo conceptual, las entidades y las reglas de negocio provienen del trabajo previo de los integrantes y de las fuentes oficiales citadas. Las decisiones de transformación —la estrategia de la jerarquía, el uso de disparadores para los topes de carga y de cupo, y no almacenar los atributos derivados— se tomaron y se revisaron en equipo. Cada integrante ejecutó el esquema y su propio cambio del Ejercicio 8, conservó sus evidencias, y responde por el contenido que entrega.
->>>>>>> practica3
