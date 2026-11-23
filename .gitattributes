@@ -1,7 +1,0 @@
-# Los scripts corren dentro de contenedores Linux: siempre con saltos de línea LF,
-# aunque se clone en Windows (con CRLF, sh y psql fallan).
-*.sh   text eol=lf
-*.sql  text eol=lf
-*.yaml text eol=lf
-*.txt  text eol=lf
-.env.example text eol=lf

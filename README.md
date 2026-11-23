@@ -1,59 +1,149 @@
-# Practices 6, 7 and 8 · Gestorix (own project)
+# Catscoms
 
-**Run everything with one command** (Docker Desktop or Docker Engine with Compose v2):
+Equipo del curso de Bases de Datos · ESCOM-IPN · Ingeniería en Sistemas Computacionales, plan 2020
+
+| Integrante | Usuario de GitHub |
+|---|---|
+| Estrada Sánchez Emiliano | `Ayddoous10` |
+| Mora Acosta Pablo | `pablo140706` |
+| Espinosa Gómez David Enrique | `daenesgo` |
+
+## Práctica 2 — Modelo EER y propuestas de mejora
+
+### Proyecto propio
+
+**Gestor académico ESCOM** — sistema multiusuario de apoyo a la reinscripción para las tres carreras de la Escuela (ISC, IIA, LCD), a partir de `iscweb`. Detalles en [`proyecto-propio/requisitos-ampliados.pdf`](proyecto-propio/requisitos-ampliados.pdf).
+
+### Proyecto asignado
+
+**Sismos** — Sistema de visualización de datos sísmicos de México
+
+- Repositorio original: https://github.com/gabrielhuav/Seismic-Data-Visualization-System
+- Fork del equipo: https://ayddoous10.github.io/Seismic_Data_Geosciences/
+- Commit que lo puso en funcionamiento: [`8569667`](https://github.com/pablo140706/Seismic-Data-Visualization-System/commit/8569667cf4f46fab640dba3f82a7b324ca7efaf7)
+- Artículo de referencia: Villa Vargas, J. M., Hurtado Avilés, G., y Climent Hernández, J. A. (2026). Cuando México tiembla: la historia contada por los datos. *AZCATL Revista de Divulgación en Ciencias, Ingeniería e Innovación, 4*(6), 28-33. https://doi.org/10.24275/AZC2026E1004
+- Documentación del levantamiento: [`proyecto-asignado/levantamiento.md`](proyecto-asignado/levantamiento.md)
+
+### Propuestas de mejora (Ejercicio 6)
+
+Registradas como issues, asignadas a su autor.
+
+| # | Autor | Propuesta | Issue |
+|---|---|---|---|
+| 2 | Estrada Sánchez Emiliano | Despliegue reproducible del entorno que funcione con un solo comando | [#1](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/1) |
+| 3 | Estrada Sánchez Emiliano | Normalizar la tabla de hechos y sus dimensiones | [#5](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/5) |
+| 6 | Estrada Sánchez Emiliano | Guardar y compartir reportes analíticos personalizados | [#6](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/6) |
+| 1 | Mora Acosta Pablo | Bitácora de carga y auditoría de registros descartados | [#2](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/2) |
+| 4 | Mora Acosta Pablo | Selección dinámica de cortes censales para el impacto | [#3](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/3) |
+| 8 | Mora Acosta Pablo | Cálculo del impacto territorial por municipio | [#4](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/4) |
+| 5 | Espinosa Gómez David Enrique | Documentación y versionado del cálculo de riesgo | [#7](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/7) |
+| 7 | Espinosa Gómez David Enrique | Detección de réplicas y secuencias sísmicas | [#8](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/8) |
+| 9 | Espinosa Gómez David Enrique | Clasificación por placa tectónica o zona sismogénica | [#9](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/9) |
+
+PDF con el detalle de las 9 propuestas: [`propuestas/propuestas-de-mejora.pdf`](propuestas/propuestas-de-mejora.pdf)
+
+
+## Práctica 3 — Transformación del modelo EER al modelo relacional
+
+
+Equipo **Catscoms** · Bases de Datos · ESCOM-IPN · Ingeniería en Sistemas Computacionales, plan 2020
+
+Fecha de entrega: miércoles 14 de octubre de 2026
+
+### Proyecto propio
+
+**Gestor académico ESCOM** — sistema multiusuario de apoyo a la reinscripción para las tres carreras de la Escuela (ISC, IIA, LCD). El modelo EER de partida es el del Ejercicio 4 de la [Práctica 2](https://github.com/pablo140706/Catscoms/blob/main/proyecto-propio/requisitos-ampliados.pdf).
+
+El esquema resultante tiene **18 tablas**, 89 columnas, 22 claves foráneas y 28 restricciones `CHECK`, más dos vistas para los atributos derivados y tres disparadores para las reglas de negocio que no caben en una restricción declarativa.
+
+### Proyecto asignado
+
+**Sismos** — Sistema de visualización de datos sísmicos de México.
+
+- Repositorio original: https://github.com/gabrielhuav/Seismic-Data-Visualization-System
+- Fork del equipo: https://github.com/pablo140706/Seismic-Data-Visualization-System
+- Modelo EER reconstruido en la [Práctica 2](https://github.com/pablo140706/Catscoms/blob/main/proyecto-asignado/Ejercicio-5.pdf)
+
+### Sistema gestor utilizado
+
+**PostgreSQL 16** para el proyecto propio y **PostgreSQL 17** para el asignado, los dos en contenedor.
+
+| | Proyecto propio | Proyecto asignado |
+|---|---|---|
+| Contenedor | `pg-practica1` | `seismic-data-visualization-system-db-1` |
+| Puerto en el host | 5432 | 5433 |
+| Base de datos | `catscoms_p3` | `datawarehouse` |
 
 ```bash
-docker compose up --exit-code-from consultas
+docker compose up -d
+docker exec -it pg-practica1 psql -U postgres -c "CREATE DATABASE catscoms_p3;"
+docker exec -i pg-practica1 psql -U postgres -d catscoms_p3 -v ON_ERROR_STOP=1 < proyecto-propio/sql/esquema.sql
 ```
 
-**What you should see:**
-- PostgreSQL 17 starts, loads the flat table `horario_plano` (90 real class sessions) and applies the
-  numbered migration that normalizes it. Its log says
-  `Sin pérdida: las 90 filas … (faltan 0, sobran 0)`.
-- The `consultas` service prints, in order, every query of Part 2: its question, its relational-algebra
-  expression and its result.
-- It regenerates `relax/grupo.txt` from the database and ends with `Todo terminó sin errores.`
-- The command returns exit code 0.
+Cada integrante trabaja el Ejercicio 8 sobre su propia copia de la base del proyecto asignado, para no pisar el trabajo de los demás: `dw_pablo140706`, `dw_ayddoous10` y `dw_daenesgo`.
 
-The whole output is also saved to `evidencias/salida-del-contenedor.txt`. It needs no input:
-the test credentials are in `.env.example` (they are not real). Data survives restarts in the
-`datos` volume. Run the same command again to repeat the queries; `docker compose down -v` deletes the
-volume and starts from scratch.
+### Correcciones al modelo EER de la Práctica 2
 
----
+El Ejercicio 2 pide corregir el modelo antes de transformarlo. Al revisarlo contra las reglas de la notación aparecieron tres puntos que además impedían aplicar alguna regla de transformación.
 
-## What is here
-
-Gestorix is an academic manager for ESCOM students (progress, timetable, teachers, reviews), published at
-<https://thwarting-earthling-evasive.ngrok-free.dev> (repository:
-[`pablo140706/Gestorix`](https://github.com/pablo140706/Gestorix)). Its schema was already in 3NF/BCNF,
-so, as the assignment allows, we normalize a **purposely denormalized table built with real data**: the
-flat timetable record that iscweb (Gestorix before it had a database) used.
-
-| Path | Content |
+| Qué cambió | Por qué |
 |---|---|
-| [`normalizacion.md`](normalizacion.md) | Part 1, exercises 1.1–1.3: design guidelines per table, functional dependencies from business rules, attribute closures, minimal cover, normal forms, lossless join and dependency preservation |
-| [`algebra.md`](algebra.md) | Part 2, exercises 2.1–2.2: 14 queries covering every operator, with algebra, RelaX screenshot, SQL and the result returned by the database |
-| `almacen-y-formas-normales.md` | Exercise 1.4 (assigned project's data warehouse): by Emiliano |
-| [`init/`](init/) | Runs by itself on the first start: `00` creates the flat table, `01` loads its 90 rows, `02` applies the migrations in order |
-| [`migraciones/`](migraciones/) | Numbered schema migrations. `001` normalizes `horario_plano` by **moving its rows** into the new tables and checks that joining them gives back exactly the original rows |
-| [`consultas/`](consultas/) | One `.sql` file per query (`00-…` to `13-…`); `correr.sh` runs them |
-| [`relax/`](relax/) | `exportar-grupo.sql` (export script) and `grupo.txt` (the RelaX group, regenerated on every run) |
-| [`integrantes/`](integrantes/) | Individual work, one signed file per member, with their own queries (also run by the container) |
-| [`evidencias/`](evidencias/) | RelaX screenshots and the container's output |
-| [`fuente/`](fuente/) | The script that extracted the sample from the Gestorix database (run once; not part of the container) |
-| `compose.yaml`, `.env.example` | The `db` service (PostgreSQL 17 with a volume) and the `consultas` service (runs the queries) |
+| La cardinalidad de **Cursa** pasa de `(0, carga_media) : (0, cupo)` a `(0, N) : (0, N)` | El máximo de una cardinalidad debe ser una constante del modelo. Aquí dependía de `Carrera.carga_media` —7 en ISC y 6 en IIA y LCD— y de `Grupo.cupo`, distinto en cada grupo. Los dos topes pasaron a disparadores |
+| Se añade el atributo multivaluado **`Estudiante.telefono`** | El modelo no tenía ninguno y la Regla 3 se quedaba sin nada que transformar. El procedimiento de reinscripción exige teléfono de casa y celular, así que el atributo estaba en el dominio aunque faltara en el diagrama |
+| **MateriaOptativa** gana un segundo atributo propio, `semestre_sugerido` | Solo tenía `slot`: lo que se contaba como segundo atributo era `rama_id`, que es una clave foránea y no un atributo del subtipo |
 
-## Test on a clean machine
+### Decisiones de transformación que conviene justificar
 
-Another member cloned the repository into a new folder, ran the command and recorded the result:
+- **Jerarquía `Materia`: estrategia A**, una tabla por supertipo y una por subtipo. Se descartó la C —tabla por subtipo sin supertipo— aunque la jerarquía sea total y disjunta, porque `grupo.materia_id` y las dos columnas de `prerrequisito` necesitan apuntar a una sola tabla.
+- **La disyunción la impone el gestor**, no la aplicación: cada subtipo referencia la pareja `(id, tipo)` de `materia` y fija su propio `tipo` con un `CHECK`.
+- **Los atributos derivados no se almacenan.** `promedio`, `carga_inscrita` y `adeudos_contabilizados` son vistas, para que nunca contradigan al historial del que salen.
+- **`grupo` lleva clave subrogada** con la clave natural `(periodo_id, codigo)` declarada como `UNIQUE`, para no arrastrar dos columnas por cada nivel de dependencia.
 
-| Who | Date | Commit | Result |
+### Cambio de esquema por integrante (Ejercicio 8)
+
+| Integrante | Propuesta | Issue | Archivos |
 |---|---|---|---|
-| *(to fill in)* | | | |
+| Estrada Sánchez Emiliano | Guardar y compartir reportes analíticos personalizados | [#6](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/6) | `cambios/cambio-Ayddoous10.sql` y `.pdf` |
+| Mora Acosta Pablo | Bitácora de carga y auditoría de registros descartados | [#2](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/2) | `cambios/cambio-pablo140706.sql` y `.pdf` |
+| Espinosa Gómez David Enrique | Detección de réplicas y secuencias sísmicas | [#8](https://github.com/pablo140706/Seismic-Data-Visualization-System/issues/8) | `cambios/cambio-daenesgo.sql` y `.pdf` |
 
-## Use of generative AI
+### Contenido
 
-Claude (Anthropic), through Claude Code, was used to draft and review the documents, queries, migration
-and container setup. The team chose the approach, checked every dependency against the business rules,
-ran everything and is responsible for what is delivered.
+```
+proyecto-propio/
+  inventario-eer.pdf              Ejercicio 2
+  transformacion.pdf              Ejercicios 3, 4, 5, 6.1, 6.2 y 6.5
+  diccionario-de-datos.pdf        Ejercicio 6.4
+  diagrama-relacional.png         Ejercicio 6.3
+  sql/
+    esquema.sql
+    pruebas-de-restricciones.sql
+proyecto-asignado/
+  analisis-del-esquema.pdf        Ejercicio 7.1 y 7.2
+  comparacion-eer-relacional.pdf  Ejercicio 7.3
+cambios/
+  cambio-<usuario>.sql y .pdf     Ejercicio 8, uno por integrante
+evidencias/
+```
+
+### Bibliografía
+
+Elmasri, R., y Navathe, S. B. (2016). *Fundamentals of database systems* (7.ª ed.). Pearson.
+
+Escuela Superior de Cómputo. (2026). *Procedimiento de reinscripción, periodo escolar 2027/1 (agosto 2026 – enero 2027)*. Instituto Politécnico Nacional.
+
+Instituto Politécnico Nacional. (2011). *Reglamento General de Estudios*. https://www.ipn.mx/assets/files/normatividad/docs/reglamentos/rge-13-06-2011.pdf
+
+Kimball, R., y Ross, M. (2013). *The data warehouse toolkit: The definitive guide to dimensional modeling* (3.ª ed.). Wiley.
+
+The PostgreSQL Global Development Group. (2025). *PostgreSQL 16 documentation*. https://www.postgresql.org/docs/16/
+
+Villa Vargas, J. M., Hurtado Avilés, G., y Climent Hernández, J. A. (2026). Cuando México tiembla: la historia contada por los datos. *AZCATL Revista de Divulgación de la Ciencia, la Ingeniería y la Innovación, 4*(6), 28–33. https://doi.org/10.24275/AZC2026E1004
+
+### Declaración sobre el uso de inteligencia artificial generativa
+
+Se utilizó **Claude** (Anthropic), a través de Claude Code, como apoyo en esta práctica.
+
+**Para qué se usó.** Revisar el modelo EER de la Práctica 2 contra las reglas de la notación y detectar los tres puntos corregidos que se listan arriba; escribir el borrador del script de definición de datos y de las pruebas de restricciones; generar el diccionario de datos y el diagrama relacional a partir del catálogo del gestor; consultar la base del proyecto asignado para documentar su esquema con datos reales; y redactar los documentos.
+
+**Qué puso el equipo.** El modelo conceptual, las entidades y las reglas de negocio provienen del trabajo previo de los integrantes y de las fuentes oficiales citadas. Las decisiones de transformación —la estrategia de la jerarquía, el uso de disparadores para los topes de carga y de cupo, y no almacenar los atributos derivados— se tomaron y se revisaron en equipo. Cada integrante ejecutó el esquema y su propio cambio del Ejercicio 8, conservó sus evidencias, y responde por el contenido que entrega.
