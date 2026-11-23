@@ -1,13 +1,45 @@
+# Gestorix · práctica 6, 7 y 8 · un solo comando:
+#
+#   docker compose up --exit-code-from consultas
+#
+# 1. "db" crea la base vacía, carga la tabla plana (init/00 y 01) y aplica
+#    las migraciones numeradas (init/02 → migraciones/001…). Solo la primera
+#    vez: después los datos siguen en el volumen "datos".
+# 2. "consultas" espera a que la base esté lista, corre cada consulta de
+#    consultas/ (pregunta, álgebra y resultado), regenera relax/grupo.txt y
+#    termina. Con --exit-code-from, el comando termina cuando ella termina.
+name: gestorix-practica6-8
+
 services:
-  pg-practica1:
-    image: postgres:16
-    container_name: pg-practica1
-    environment:
-      POSTGRES_PASSWORD: practica1
-    ports:
-      - "5432:5432"
+  db:
+    image: postgres:17
+    env_file: .env.example          # credenciales de PRUEBA, nunca reales
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - datos:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d:ro
+      - ./migraciones:/migraciones:ro
+    healthcheck:
+      # Por TCP (127.0.0.1): mientras corre la inicialización, Postgres solo
+      # escucha por socket, así que esto no da "listo" antes de tiempo.
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
+      interval: 2s
+      timeout: 3s
+      retries: 60
+
+  consultas:
+    image: postgres:17              # trae psql; no hace falta otra imagen
+    env_file: .env.example
+    environment:
+      PGHOST: db
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./consultas:/consultas:ro
+      - ./integrantes:/integrantes:ro
+      - ./relax:/relax
+      - ./evidencias:/evidencias
+    entrypoint: ["bash", "/consultas/correr.sh"]
 
 volumes:
-  pgdata:
+  datos:
