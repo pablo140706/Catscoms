@@ -48,7 +48,7 @@ El *Gestor académico ESCOM* de las prácticas anteriores ahora se llama **Gesto
 | Manuscrito (R3 / R4) | [Word](https://github.com/gabrielhuav/Seismic_Data_Geosciences/blob/main/paper/manuscript/out/Seismic_CG_manuscript_R3.docx) · [PDF](https://github.com/gabrielhuav/Seismic_Data_Geosciences/blob/main/paper/manuscript/out/Seismic_CG_manuscript_R3.pdf) · [iThenticate](https://github.com/gabrielhuav/Seismic_Data_Geosciences/blob/main/paper/manuscript/out/ITHENTICATE_R3_05.pdf) |
 | Referencia en APA 7 | Villa Vargas, J. M., & Hurtado Avilés, G. (2026). *A browser-based seismic data observatory for detecting and comparing earthquake sequences across North American catalogues* [Manuscrito en revisión, *Computers & Geosciences*]. https://github.com/gabrielhuav/Seismic_Data_Geosciences · https://doi.org/10.5281/zenodo.24361244 |
 | Resumen del artículo y dos propuestas de mejora | [`proyecto-asignado/parcial2/analisis_del_articulo_y_propuestas_de_mejora.md`](proyecto-asignado/parcial2/analisis_del_articulo_y_propuestas_de_mejora.md) |
-| Presentación | *Pendiente (agregar enlace o archivo PDF/PPTX)* |
+| Presentación | [`exposicion/Exposición Segundo Parcial — Equipo Catscoms.pdf`](<exposicion/Exposición Segundo Parcial — Equipo Catscoms.pdf>) |
 
 ### Aportaciones de cada integrante
 
