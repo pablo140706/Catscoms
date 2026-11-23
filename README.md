@@ -36,30 +36,31 @@ El *Gestor académico ESCOM* de las prácticas anteriores ahora se llama **Gesto
 |---|---|
 | Repositorio de la versión actual del artículo | [`gabrielhuav/Seismic_Data_Geosciences`](https://github.com/gabrielhuav/Seismic_Data_Geosciences) |
 | Fork del equipo | [`Ayddoous10/Seismic_Data_Geosciences`](https://github.com/Ayddoous10/Seismic_Data_Geosciences) |
-| Versión publicada | <https://ayddoous10.github.io/Seismic_Data_Geosciences/> |
-| Instrucciones de montaje e incidencia | *Pendiente* |
-| Tres consultas: álgebra, árbol, SQL y resultados | *Pendiente* |
+| Versión publicada (GitHub Pages) | <https://ayddoous10.github.io/Seismic_Data_Geosciences/> |
+| Instrucciones de montaje, qué hace el sistema e incidencia | [`proyecto-asignado/parcial2/montaje_e_incidencias_proyecto_asignado.md`](proyecto-asignado/parcial2/montaje_e_incidencias_proyecto_asignado.md) |
+| Tres consultas: álgebra relacional, árbol, SQL y resultados | [`proyecto-asignado/parcial2/tres_consultas_algebra_arbol_sql_y_relax.md`](proyecto-asignado/parcial2/tres_consultas_algebra_arbol_sql_y_relax.md) |
+| Grupo de RelaX (muestra controlada) | [`proyecto-asignado/parcial2/relax-sismos.txt`](proyecto-asignado/parcial2/relax-sismos.txt) |
 
 ### 3. Artículo y exposición
 
 | Entregable | Dónde |
 |---|---|
-| Manuscrito R3 | [Word](https://github.com/gabrielhuav/Seismic_Data_Geosciences/blob/main/paper/manuscript/out/Seismic_CG_manuscript_R3.docx) · [PDF](https://github.com/gabrielhuav/Seismic_Data_Geosciences/blob/main/paper/manuscript/out/Seismic_CG_manuscript_R3.pdf) |
-| Referencia en APA 7 | *Pendiente* |
-| Dos propuestas de mejora | *Pendiente* |
-| Presentación | *Pendiente* |
+| Manuscrito (R3 / R4) | [Word](https://github.com/gabrielhuav/Seismic_Data_Geosciences/blob/main/paper/manuscript/out/Seismic_CG_manuscript_R3.docx) · [PDF](https://github.com/gabrielhuav/Seismic_Data_Geosciences/blob/main/paper/manuscript/out/Seismic_CG_manuscript_R3.pdf) · [iThenticate](https://github.com/gabrielhuav/Seismic_Data_Geosciences/blob/main/paper/manuscript/out/ITHENTICATE_R3_05.pdf) |
+| Referencia en APA 7 | Villa Vargas, J. M., & Hurtado Avilés, G. (2026). *A browser-based seismic data observatory for detecting and comparing earthquake sequences across North American catalogues* [Manuscrito en revisión, *Computers & Geosciences*]. https://github.com/gabrielhuav/Seismic_Data_Geosciences · https://doi.org/10.5281/zenodo.24361244 |
+| Resumen del artículo y dos propuestas de mejora | [`proyecto-asignado/parcial2/analisis_del_articulo_y_propuestas_de_mejora.md`](proyecto-asignado/parcial2/analisis_del_articulo_y_propuestas_de_mejora.md) |
+| Presentación | *Pendiente (agregar enlace o archivo PDF/PPTX)* |
 
 ### Aportaciones de cada integrante
 
 | Integrante | Aportación |
 |---|---|
 | Mora Acosta Pablo | Proyecto propio: Gestorix (base de datos, API, front, publicación), evidencia del registro y práctica integrada |
-| Estrada Sánchez Emiliano | *Pendiente* |
+| Estrada Sánchez Emiliano | Proyecto asignado (Sismos): fork y publicación en GitHub Pages, montaje local y documentación de incidencias, diseño y validación de las tres consultas en SQLite (`sql.js`) y RelaX, análisis del manuscrito y propuestas de mejora |
 | Espinosa Gómez David Enrique | *Pendiente* |
 
 ### Uso de inteligencia artificial generativa en el segundo parcial
 
-Se usó Claude (Anthropic), a través de Claude Code, para escribir y revisar código, consultas y documentos de Gestorix y de la práctica integrada. El equipo decidió el alcance y las reglas, revisó y probó todo, y responde por lo que entrega.
+Se usó Claude (Anthropic), a través de Claude Code, para escribir y revisar código, consultas y documentos de Gestorix y de la práctica integrada, y Gemini (Google) como apoyo para estructurar la documentación del proyecto asignado, las expresiones en álgebra relacional/RelaX y el análisis del manuscrito. El equipo decidió el alcance y las reglas, revisó y probó todo, y responde por lo que entrega.
 
 ---
 
@@ -74,7 +75,7 @@ Se usó Claude (Anthropic), a través de Claude Code, para escribir y revisar c�
 **Sismos** — Sistema de visualización de datos sísmicos de México
 
 - Repositorio original: https://github.com/gabrielhuav/Seismic-Data-Visualization-System
-- Fork del equipo: https://ayddoous10.github.io/Seismic_Data_Geosciences/
+- Fork del equipo: https://github.com/pablo140706/Seismic-Data-Visualization-System
 - Commit que lo puso en funcionamiento: [`8569667`](https://github.com/pablo140706/Seismic-Data-Visualization-System/commit/8569667cf4f46fab640dba3f82a7b324ca7efaf7)
 - Artículo de referencia: Villa Vargas, J. M., Hurtado Avilés, G., y Climent Hernández, J. A. (2026). Cuando México tiembla: la historia contada por los datos. *AZCATL Revista de Divulgación en Ciencias, Ingeniería e Innovación, 4*(6), 28-33. https://doi.org/10.24275/AZC2026E1004
 - Documentación del levantamiento: [`proyecto-asignado/levantamiento.md`](proyecto-asignado/levantamiento.md)
