@@ -19,7 +19,7 @@ Equipo del curso de Bases de Datos · ESCOM-IPN · Ingeniería en Sistemas Compu
 **Sismos** — Sistema de visualización de datos sísmicos de México
 
 - Repositorio original: https://github.com/gabrielhuav/Seismic-Data-Visualization-System
-- Fork del equipo: https://github.com/pablo140706/Seismic-Data-Visualization-System
+- Fork del equipo: https://ayddoous10.github.io/Seismic_Data_Geosciences/
 - Commit que lo puso en funcionamiento: [`8569667`](https://github.com/pablo140706/Seismic-Data-Visualization-System/commit/8569667cf4f46fab640dba3f82a7b324ca7efaf7)
 - Artículo de referencia: Villa Vargas, J. M., Hurtado Avilés, G., y Climent Hernández, J. A. (2026). Cuando México tiembla: la historia contada por los datos. *AZCATL Revista de Divulgación en Ciencias, Ingeniería e Innovación, 4*(6), 28-33. https://doi.org/10.24275/AZC2026E1004
 - Documentación del levantamiento: [`proyecto-asignado/levantamiento.md`](proyecto-asignado/levantamiento.md)
