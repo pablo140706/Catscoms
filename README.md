@@ -8,61 +8,6 @@ Equipo del curso de Bases de Datos · ESCOM-IPN · Ingeniería en Sistemas Compu
 | Mora Acosta Pablo | `pablo140706` |
 | Espinosa Gómez David Enrique | `daenesgo` |
 
-## Segundo parcial: enlaces y archivos
-
-Lo que pide el *Proyecto del segundo parcial de Bases de Datos*, en el orden de la exposición.
-
-### 1. Proyecto propio: Gestorix
-
-El *Gestor académico ESCOM* de las prácticas anteriores ahora se llama **Gestorix** y vive en su propio repositorio.
-
-| Entregable | Dónde |
-|---|---|
-| Aplicación web | **<https://thwarting-earthling-evasive.ngrok-free.dev>**. La PC del autor es el servidor: la base vive en su Docker y ngrok la saca a internet. Funciona mientras esa PC esté prendida |
-| Repositorio e instrucciones para ejecutarla | [`pablo140706/Gestorix`](https://github.com/pablo140706/Gestorix) (sección *Cómo levantarlo*) |
-| Esquema (creación) | [`sql/00-tablas.sql`](https://github.com/pablo140706/Gestorix/blob/main/sql/00-tablas.sql) |
-| Modelo relacional, claves, restricciones y acciones referenciales | [`proyecto-propio/practica-integrada/diagrama-er.md`](proyecto-propio/practica-integrada/diagrama-er.md) |
-| Scripts de carga y migración | [`sql/`](https://github.com/pablo140706/Gestorix/tree/main/sql), [`importador/`](https://github.com/pablo140706/Gestorix/tree/main/importador) y [`migraciones/`](https://github.com/pablo140706/Gestorix/tree/main/migraciones) |
-| Evidencia del registro | [`docs/evidencia-registro.md`](https://github.com/pablo140706/Gestorix/blob/main/docs/evidencia-registro.md): formulario → `SELECT` en pgAdmin, y cómo viajan los datos a la base |
-| Seguridad del registro | Tabla en el [README de Gestorix](https://github.com/pablo140706/Gestorix#publicación-la-pc-como-servidor) |
-| Práctica integrada 6–8: normalización | [`proyecto-propio/practica-integrada/normalizacion.md`](proyecto-propio/practica-integrada/normalizacion.md) |
-| Práctica integrada 6–8: álgebra relacional y SQL | [`proyecto-propio/practica-integrada/algebra.md`](proyecto-propio/practica-integrada/algebra.md): 13 ejercicios (selección, proyección, conjuntos, producto, reuniones, agrupación y división) comparados en RelaX |
-| Grupo de RelaX | [`proyecto-propio/practica-integrada/relax/gestorix.txt`](proyecto-propio/practica-integrada/relax/gestorix.txt) (se pega en el *Editor de Grupo* de [RelaX](https://dbis-uibk.github.io/relax/calc/local/uibk/local/0)) y los scripts que lo generan |
-
-### 2. Proyecto asignado: Sismos
-
-| Entregable | Dónde |
-|---|---|
-| Repositorio de la versión actual del artículo | [`gabrielhuav/Seismic_Data_Geosciences`](https://github.com/gabrielhuav/Seismic_Data_Geosciences) |
-| Fork del equipo y su versión publicada | *Pendiente* |
-| Instrucciones de montaje | *Pendiente* |
-| Tres consultas: álgebra, árbol, SQL y resultados | *Pendiente* |
-
-### 3. Artículo y exposición
-
-| Entregable | Dónde |
-|---|---|
-| Manuscrito R3 | [Word](https://github.com/gabrielhuav/Seismic_Data_Geosciences/blob/main/paper/manuscript/out/Seismic_CG_manuscript_R3.docx) · [PDF](https://github.com/gabrielhuav/Seismic_Data_Geosciences/blob/main/paper/manuscript/out/Seismic_CG_manuscript_R3.pdf) |
-| Referencia en APA 7 | *Pendiente* |
-| Dos propuestas de mejora | *Pendiente* |
-| Presentación | *Pendiente* |
-
-### Aportaciones de cada integrante
-
-| Integrante | Aportación |
-|---|---|
-| Mora Acosta Pablo | Proyecto propio (Gestorix: base, API, front, publicación y práctica integrada) y parte técnica del proyecto asignado |
-| Estrada Sánchez Emiliano | *Pendiente* |
-| Espinosa Gómez David Enrique | *Pendiente* |
-
-### Uso de inteligencia artificial generativa en el segundo parcial
-
-Se usó Claude (Anthropic), a través de Claude Code, para escribir y revisar código, consultas y documentos de Gestorix y de la práctica integrada. El equipo decidió el alcance y las reglas, revisó y probó todo, y responde por lo que entrega.
-
----
-
-# Primer parcial y prácticas anteriores
-
 ## Práctica 2 — Modelo EER y propuestas de mejora
 
 ### Proyecto propio
