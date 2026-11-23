@@ -46,7 +46,9 @@ Todas las consultas se ejecutaron sobre el esquema en memoria de `sql.js` (`reco
   ```
 
 ![Consulta 1 en SQLite](evidencias/04-c1-sqlite.png)
-![Consulta 1 en RelaX](evidencias/05-c1-relax.png)
+![Consulta 1 en RelaX — Expresión](evidencias/05a-c1-relax-expresion.png)
+![Consulta 1 en RelaX — Árbol de operadores](evidencias/05b-c1-relax-arbol.png)
+![Consulta 1 en RelaX — Resultado](evidencias/05c-c1-relax-resultado.png)
 
 ---
 
@@ -85,7 +87,9 @@ Todas las consultas se ejecutaron sobre el esquema en memoria de `sql.js` (`reco
   ```
 
 ![Consulta 2 en SQLite](evidencias/06-c2-sqlite.png)
-![Consulta 2 en RelaX](evidencias/07-c2-relax.png)
+![Consulta 2 en RelaX — Expresión](evidencias/07a-c2-relax-expresion.png)
+![Consulta 2 en RelaX — Árbol de operadores](evidencias/07b-c2-relax-arbol.png)
+![Consulta 2 en RelaX — Resultado](evidencias/07c-c2-relax-resultado.png)
 
 ---
 
@@ -138,4 +142,6 @@ Todas las consultas se ejecutaron sobre el esquema en memoria de `sql.js` (`reco
   ```
 
 ![Consulta 3 en SQLite](evidencias/08-c3-sqlite.png)
-![Consulta 3 en RelaX](evidencias/09-c3-relax.png)
+![Consulta 3 en RelaX — Expresión](evidencias/09a-c3-relax-expresion.png)
+![Consulta 3 en RelaX — Árbol de operadores](evidencias/09b-c3-relax-arbol.png)
+![Consulta 3 en RelaX — Resultado](evidencias/09c-c3-relax-resultado.png)

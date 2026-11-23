@@ -1,0 +1,31 @@
+group: Seismic_Observatory
+
+catalogs = {
+  catalogue_id:string, label:string, provider:string, snapshot:string, depth_unit:string
+  'usgs-na-2020-2025', 'Norteamérica · 2020–2025', 'usgs', '8fe055ffe635875f7290906d45f70562a7896621', 'km'
+  'usgs-mx-historical', 'Región de México · instantánea del artículo', 'usgs', '8fe055ffe635875f7290906d45f70562a7896621', 'km'
+  'nrcan-ca-historical', 'Canadá y alrededores · 1985–2019', 'nrcan', 'sha256:f10b91ddbc683406e2f1a642aa8a15fba3d1b46eef3a775f2798cfdc75a31241', null
+  'ssn-mx-historical', 'México · SSN directo · 1900–2026', 'ssn', 'sha256:0601c65544bc95ef865d3440e5e6d84249acdebd8edfb379669597096543f993', 'km'
+}
+
+records = {
+  row_no:number, catalogue_id:string, time:string, year:number, mag:number, depth_km:number, place:string
+  1, 'ssn-mx-historical', '2017-09-19T18:14:39Z', 2017, 7.1, 51.2, '8 km al NOROESTE de CHIAUTLA DE TAPIA, PUE'
+  2, 'ssn-mx-historical', '2017-09-08T04:49:17Z', 2017, 8.2, 45.9, '140 km al SUROESTE de PIJIJIAPAN, CHIS'
+  3, 'ssn-mx-historical', '2018-02-16T23:39:39Z', 2018, 7.2, 16.0, '14 km al SURESTE de PINOTEPA NACIONAL, OAX'
+  4, 'ssn-mx-historical', '2020-06-23T15:29:03Z', 2020, 7.4, 22.8, '4 km al NORTE de CRUCECITA, OAX'
+  5, 'ssn-mx-historical', '2021-09-08T01:47:46Z', 2021, 7.1, 15.0, '14 km al SUROESTE de ACAPULCO, GRO'
+  6, 'ssn-mx-historical', '2026-07-17T14:48:38Z', 2026, 7.4, 10.0, '135 km al SUROESTE de CD HIDALGO, CHIS'
+  7, 'usgs-na-2020-2025', '2022-09-22T06:16:09.459Z', 2022, 6.8, 24.1, '55 km SSW of Aguililla, Mexico'
+  8, 'usgs-mx-historical', '2022-09-22T06:16:09.459Z', 2022, 6.8, 24.1, '55 km SSW of Aguililla, Mexico'
+  9, 'ssn-mx-historical', '2022-09-22T06:16:08Z', 2022, 6.9, 12.0, '85 km al SUR de COALCOMAN, MICH'
+  10, 'ssn-mx-historical', '2022-09-19T18:05:09Z', 2022, 7.7, 12.1, '61 km al SUR de COALCOMAN, MICH'
+  11, 'usgs-na-2020-2025', '2022-09-19T18:05:08.217Z', 2022, 7.6, 26.9, '35 km SSW of Aguililla, Mexico'
+  12, 'usgs-mx-historical', '2022-09-19T18:05:08.217Z', 2022, 7.6, 26.9, '35 km SSW of Aguililla, Mexico'
+  13, 'usgs-na-2020-2025', '2022-01-11T12:39:32.454Z', 2022, 6.6, 20.0, '53 km SE of Nikolski, Alaska'
+  14, 'usgs-na-2020-2025', '2022-01-11T11:35:43.674Z', 2022, 6.8, 20.0, '100 km SE of Nikolski, Alaska'
+  15, 'ssn-mx-historical', '1985-09-19T13:17:47Z', 1985, 8.1, 15.0, '45 km al NOROESTE de LA MIRA, MICH'
+  16, 'usgs-na-2020-2025', '2023-05-10T10:00:00Z', 2023, 5.2, 20.0, 'Southern California, USA'
+  17, 'ssn-mx-historical', '2022-09-20T08:15:00Z', 2022, 5.5, 18.0, 'Coalcoman, Michoacan'
+  18, 'nrcan-ca-historical', '2018-10-22T05:39:39Z', 2018, 6.6, 10.0, 'Port Hardy, BC'
+}
