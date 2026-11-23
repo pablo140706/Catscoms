@@ -1,0 +1,342 @@
+Gestorix · práctica 6, 7 y 8 · 2026-11-23 00:05 UTC
+
+Tablas después de la migración (filas):
+carrera : 2
+periodo : 2
+materia : 12
+seriacion : 3
+profesor : 19
+bloque : 5
+oferta : 30
+sesion : 90
+cupo : 27
+antes.horario_plano (la tabla original) : 90
+
+======================================================================
+00 · Consulta representativa (selección, proyección y dos reuniones theta)
+Pregunta: ¿qué profesores con calidad de 8 o más dan materias de 2.º semestre en 27/1, y en qué grupo?
+Álgebra:
+  π profesor.nombre, materia.nombre, oferta.grupo (
+    σ mp_calidad >= 8 (profesor)
+    ⨝ profesor.id = oferta.profesor (
+      σ periodo = '27/1' (oferta) ⨝ oferta.materia = materia.clave σ semestre = 2 (materia)
+    )
+  )
+----------------------------------------------------------------------
+           profesor            |        materia         | grupo 
+-------------------------------+------------------------+-------
+ CASTILLO MARRUFO JUAN ANTONIO | Fundamentos económicos | 2CM1
+ VIVEROS VELA KARINA           | Cálculo aplicado       | 2CM1
+(2 rows)
+
+
+======================================================================
+01 · Selección σ
+Pregunta: ¿qué materias son de 1.er semestre?
+Álgebra:
+  σ semestre = 1 (materia)
+----------------------------------------------------------------------
+ clave | carrera |           nombre            | tipo | semestre | creditos | ua 
+-------+---------+-----------------------------+------+----------+----------+----
+ C101  | ISC     | Fundamentos de programación | OBL  |        1 |      7.5 |  1
+ C102  | ISC     | Matemáticas discretas       | OBL  |        1 |     10.5 |  1
+ C103  | ISC     | Cálculo                     | OBL  |        1 |      7.5 |  1
+ C104  | ISC     | Análisis vectorial          | OBL  |        1 |      7.5 |  1
+ C105  | ISC     | Comunicación oral y escrita | OBL  |        1 |      7.5 |  1
+(5 rows)
+
+
+======================================================================
+02 · Proyección π
+Pregunta: ¿qué grupos hay y en qué turno?
+Álgebra:
+  π grupo, turno (oferta)
+----------------------------------------------------------------------
+ grupo | turno 
+-------+-------
+ 1CM1  | M
+ 1CM8  | M
+ 2CM1  | M
+ 8BM1  | M
+ 8BM2  | M
+(5 rows)
+
+
+======================================================================
+03 · Selección y proyección compuestas
+Pregunta: ¿qué profesores tienen calidad de 9 o más en MisProfesores?
+Álgebra:
+  π nombre, mp_calidad (σ mp_calidad >= 9 (profesor))
+----------------------------------------------------------------------
+             nombre             | mp_calidad 
+--------------------------------+------------
+ FLORES FUENTES NARIA ADRIANA   |        9.2
+ SANCHEZ MORENO ADRIANA DE LA P |        9.4
+(2 rows)
+
+
+======================================================================
+04 · Unión ∪
+Pregunta: ¿quién dio clase en 1CM1 en 26/2 o en 27/1?
+Álgebra:
+  π nombre (
+    ρ id←profesor (
+      π profesor (σ grupo = '1CM1' ∧ periodo = '26/2' (oferta))
+      ∪
+      π profesor (σ grupo = '1CM1' ∧ periodo = '27/1' (oferta))
+    ) ⨝ profesor
+  )
+----------------------------------------------------------------------
+               nombre               
+------------------------------------
+ DORANTES VILLA CLAUDIA JISELA
+ FLORES FUENTES NARIA ADRIANA
+ GUZMAN AGUILAR FLORENCIO
+ HERRERA YAÑEZ CRISPIN
+ RESENDIZ MUÑOZ ROCIO
+ RODRIGUEZ VILLARREAL JOSE GREGORIO
+ SANCHEZ MORENO ADRIANA DE LA P
+ VAZQUEZ GONZALEZ LEONOR
+(8 rows)
+
+
+======================================================================
+05 · Intersección ∩
+Pregunta: ¿qué profesores dieron clase en los dos periodos?
+Álgebra:
+  π nombre (
+    ρ id←profesor (
+      π profesor (σ periodo = '26/2' (oferta)) ∩ π profesor (σ periodo = '27/1' (oferta))
+    ) ⨝ profesor
+  )
+----------------------------------------------------------------------
+             nombre             
+--------------------------------
+ ARREDONDO SANCHEZ ANA LAURA
+ CASTILLO MARRUFO JUAN ANTONIO
+ GUZMAN AGUILAR FLORENCIO
+ RESENDIZ MUÑOZ ROCIO
+ SALINAS HERNANDEZ ENCARNACION
+ SANCHEZ MORENO ADRIANA DE LA P
+ TECLA PARRA ROBERTO
+ VIVEROS VELA KARINA
+(8 rows)
+
+
+======================================================================
+06 · Diferencia −
+Pregunta: ¿qué profesores dieron clase en 26/2 y ya no en 27/1?
+Álgebra:
+  π nombre (
+    ρ id←profesor (
+      π profesor (σ periodo = '26/2' (oferta)) - π profesor (σ periodo = '27/1' (oferta))
+    ) ⨝ profesor
+  )
+----------------------------------------------------------------------
+             nombre              
+---------------------------------
+ DORANTES VILLA CLAUDIA JISELA
+ HERRERA YAÑEZ CRISPIN
+ LEAL PACHECO CHRISTIAN RENE
+ REYES BERMEJO TLATOANI DE JESUS
+(4 rows)
+
+
+======================================================================
+07 · Producto cartesiano ×
+Pregunta: ¿de qué carrera es cada materia de 8.º semestre? (el producto solo sirve si se filtra después)
+Álgebra:
+  materia ⨯ carrera                                   (todas las combinaciones: se cuentan)
+  π materia.clave, carrera.nombre (σ materia.carrera = carrera.codigo ∧ semestre = 8 (materia ⨯ carrera))
+----------------------------------------------------------------------
+ tuplas_del_producto 
+---------------------
+                  24
+(1 row)
+
+ clave |                nombre                 
+-------+---------------------------------------
+ B801  | Ingeniería en Inteligencia Artificial
+(1 row)
+
+
+======================================================================
+08 · Reunión natural ⨝
+Pregunta: ¿qué cupo le toca a cada asesor de Trabajo Terminal II?
+Álgebra:
+  π grupo, materia, profesor, cupo, inscritos (σ materia = 'B801' (oferta ⨝ cupo))
+----------------------------------------------------------------------
+ grupo | materia | profesor | cupo | inscritos 
+-------+---------+----------+------+-----------
+ 8BM1  | B801    |        6 |   36 |        29
+ 8BM1  | B801    |        7 |   36 |        29
+ 8BM1  | B801    |       12 |   36 |        29
+ 8BM2  | B801    |        1 |   36 |        13
+ 8BM2  | B801    |        3 |   36 |        13
+(5 rows)
+
+
+======================================================================
+09 · Reunión theta ⨝θ
+Pregunta: ¿quién da cada materia de 2CM1 en 27/1, y qué calidad tiene?
+Álgebra:
+  π oferta.materia, profesor.nombre, profesor.mp_calidad (
+    σ grupo = '2CM1' ∧ periodo = '27/1' (oferta) ⨝ oferta.profesor = profesor.id profesor
+  )
+----------------------------------------------------------------------
+ materia |            nombre             | mp_calidad 
+---------+-------------------------------+------------
+ C201    | TECLA PARRA ROBERTO           |        7.2
+ C202    | GUZMAN AGUILAR FLORENCIO      |        7.9
+ C203    | VIVEROS VELA KARINA           |        8.3
+ C204    | SALINAS HERNANDEZ ENCARNACION |        6.6
+ C205    | ARREDONDO SANCHEZ ANA LAURA   |       null
+ C206    | CASTILLO MARRUFO JUAN ANTONIO |        8.2
+(6 rows)
+
+
+======================================================================
+10 · Reunión externa izquierda ⟕
+Pregunta: ¿qué requisito tiene cada materia de 2.º semestre, si tiene?
+Álgebra:
+  π materia.clave, materia.nombre, seriacion.requisito (
+    σ semestre = 2 (materia) ⟕ materia.clave = seriacion.materia seriacion
+  )
+----------------------------------------------------------------------
+ clave |              nombre              | requisito 
+-------+----------------------------------+-----------
+ C201  | Algoritmos y estructura de datos | C101
+ C202  | Álgebra lineal                   | C104
+ C203  | Cálculo aplicado                 | C103
+ C204  | Mecánica y electromagnetismo     | null
+ C205  | Ingeniería, ética y sociedad     | null
+ C206  | Fundamentos económicos           | null
+(6 rows)
+
+
+======================================================================
+11 · Agrupación γ con count
+Pregunta: ¿cuántas ofertas tiene cada grupo en cada periodo?
+Álgebra:
+  γ periodo, grupo; count(*)→ofertas (oferta)
+----------------------------------------------------------------------
+ periodo | grupo | ofertas 
+---------+-------+---------
+ 26/2    | 1CM1  |       5
+ 26/2    | 1CM8  |       2
+ 26/2    | 2CM1  |       6
+ 27/1    | 1CM1  |       5
+ 27/1    | 1CM8  |       1
+ 27/1    | 2CM1  |       6
+ 27/1    | 8BM1  |       3
+ 27/1    | 8BM2  |       2
+(8 rows)
+
+
+======================================================================
+12 · Agrupación γ con avg sobre una reunión (resumen por grupo)
+Pregunta: ¿qué calidad promedio tienen los profesores de cada grupo en 27/1?
+Álgebra:
+  γ grupo; avg(mp_calidad)→calidad_promedio, count(mp_calidad)→con_dato (
+    σ periodo = '27/1' (oferta) ⨝ oferta.profesor = profesor.id profesor
+  )
+----------------------------------------------------------------------
+ grupo | calidad_promedio | con_dato 
+-------+------------------+----------
+ 1CM1  |             8.04 |        5
+ 1CM8  |             9.20 |        1
+ 2CM1  |             7.64 |        5
+ 8BM1  |             6.40 |        3
+ 8BM2  |             6.00 |        2
+(5 rows)
+
+
+======================================================================
+13 · División ÷ (una pregunta con «todas»)
+Pregunta: ¿qué grupos ofrecen en 27/1 TODAS las materias de 1.er semestre?
+Álgebra:
+  π grupo, materia (σ periodo = '27/1' (oferta))
+  ÷
+  ρ materia←clave (π clave (σ semestre = 1 (materia)))
+SQL no tiene división: "no existe una materia de 1.º que el grupo no ofrezca" (doble NOT EXISTS).
+----------------------------------------------------------------------
+ grupo 
+-------
+ 1CM1
+(1 row)
+
+
+======================================================================
+Pablo · 01 · Reunión externa + agrupación
+Pregunta: ¿cuántas clases da cada profesor en 27/1, contando también a los que ya no dan ninguna?
+Álgebra:
+  γ profesor.nombre; count(oferta.id)→clases_27_1 (
+    profesor ⟕ profesor.id = oferta.profesor σ periodo = '27/1' (oferta)
+  )
+----------------------------------------------------------------------
+               nombre               | clases_27_1 
+------------------------------------+-------------
+ FLORES FUENTES NARIA ADRIANA       |           2
+ RESENDIZ MUÑOZ ROCIO               |           2
+ ALMAZAN FARFAN ROCIO               |           1
+ ARREDONDO SANCHEZ ANA LAURA        |           1
+ BAUTISTA ROSALES SANDRA IVETTE     |           1
+ CASTILLO MARRUFO JUAN ANTONIO      |           1
+ DURÀN CAMARILLO EDMUNDO RENÈ       |           1
+ FIGUEROA DEL PRADO FELIPE DE JESUS |           1
+ GUZMAN AGUILAR FLORENCIO           |           1
+ RODRIGUEZ VILLARREAL JOSE GREGORIO |           1
+ SALINAS HERNANDEZ ENCARNACION      |           1
+ SANCHEZ MORENO ADRIANA DE LA P     |           1
+ TECLA PARRA ROBERTO                |           1
+ VAZQUEZ GONZALEZ LEONOR            |           1
+ VIVEROS VELA KARINA                |           1
+ DORANTES VILLA CLAUDIA JISELA      |           0
+ HERRERA YAÑEZ CRISPIN              |           0
+ LEAL PACHECO CHRISTIAN RENE        |           0
+ REYES BERMEJO TLATOANI DE JESUS    |           0
+(19 rows)
+
+
+======================================================================
+Pablo · 02 · División
+Pregunta: ¿qué grupos ofrecen en 27/1 TODAS las materias que piden un requisito?
+Álgebra:
+  π grupo, materia (σ periodo = '27/1' (oferta))
+  ÷
+  π materia (seriacion)
+----------------------------------------------------------------------
+ grupo 
+-------
+ 2CM1
+(1 row)
+
+
+======================================================================
+Pablo · 03 · Selección entre dos atributos + reunión natural + reunión theta
+Pregunta: ¿qué clases de 27/1 están llenas (inscritos ≥ cupo) y quién las da?
+Álgebra:
+  π oferta.grupo, oferta.materia, profesor.nombre, cupo.cupo, cupo.inscritos (
+    (σ inscritos >= cupo ∧ periodo = '27/1' (cupo) ⨝ oferta) ⨝ oferta.profesor = profesor.id profesor
+  )
+----------------------------------------------------------------------
+ grupo | materia |               nombre               | cupo | inscritos 
+-------+---------+------------------------------------+------+-----------
+ 1CM1  | C101    | RESENDIZ MUÑOZ ROCIO               |   36 |        36
+ 1CM1  | C102    | VAZQUEZ GONZALEZ LEONOR            |   36 |        36
+ 1CM1  | C103    | FLORES FUENTES NARIA ADRIANA       |   38 |        38
+ 1CM1  | C104    | RODRIGUEZ VILLARREAL JOSE GREGORIO |   35 |        35
+ 1CM1  | C105    | SANCHEZ MORENO ADRIANA DE LA P     |   38 |        38
+ 1CM8  | C103    | FLORES FUENTES NARIA ADRIANA       |   37 |        37
+ 2CM1  | C201    | TECLA PARRA ROBERTO                |   36 |        36
+ 2CM1  | C202    | GUZMAN AGUILAR FLORENCIO           |   36 |        39
+ 2CM1  | C203    | VIVEROS VELA KARINA                |   36 |        36
+ 2CM1  | C205    | ARREDONDO SANCHEZ ANA LAURA        |   36 |        37
+ 2CM1  | C206    | CASTILLO MARRUFO JUAN ANTONIO      |   36 |        37
+(11 rows)
+
+
+======================================================================
+Regenerando relax/grupo.txt desde la base…
+Listo: relax/grupo.txt (6 relaciones, 120 líneas).
+Todo terminó sin errores.
